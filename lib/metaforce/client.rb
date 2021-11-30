@@ -27,5 +27,11 @@ module Metaforce
         super
       end
     end
+
+    def respond_to_missing?(method, *_args, &_block)
+      metadata.respond_to?(method, false) ||
+        services.respond_to?(method, false) ||
+        super
+    end
   end
 end
